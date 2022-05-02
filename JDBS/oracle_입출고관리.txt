@@ -1,0 +1,101 @@
+-- 입출고 관리
+create table tb_product (
+    pcode varchar2(20),
+    pname varchar2(100),
+    price number,
+    stock number default 0, -- 재고
+    constraint pk_tb_product_pcode primary key(pcode),
+    constraint ck_tb_product_stock check(stock >= 0)
+);
+
+create table tb_product_io (
+    no number, 
+    pcode varchar2(20),
+    status char(1),  -- I/O 입고/출고
+    cnt number,
+    io_date date default sysdate,
+    constraint pk_tb_product_io_no primary key(no),
+    constraint fk_tb_product_io_pcode foreign key(pcode) references tb_product(pcode)
+);
+
+create sequence seq_tb_product_io_no;
+
+insert into
+    tb_product
+values(
+    'apple_iphone_13',
+    '아이폰13',
+    1000000,
+    default
+);
+
+insert into
+    tb_product
+values(
+    'samsung_galaxy_22',
+    '갤럭시22',
+    1200000,
+    default
+);
+
+select * from tb_product;
+commit;
+
+-- 입출고 수량을 상품테이블 재고컬럼에 반영하는 trigger
+create or replace trigger trig_product_stock 
+    before
+    insert on tb_product_io
+    for each row
+begin
+    -- 입고
+    if :new.status = 'I' then
+        update
+            tb_product
+        set
+            stock = stock + :new.cnt
+        where
+            pcode = :new.pcode;    
+    -- 출고
+    else 
+        update
+            tb_product
+        set
+            stock = stock - :new.cnt
+        where
+            pcode = :new.pcode;
+    end if;
+end;
+/
+
+
+insert into 
+    tb_product_io
+values (
+    seq_tb_product_io_no.nextval,
+    'apple_iphone_13',
+    'I',
+    100, 
+    default 
+);
+insert into 
+    tb_product_io
+values (
+    seq_tb_product_io_no.nextval,
+    'apple_iphone_13',
+    'O',
+    50, 
+    default 
+);
+
+insert into 
+    tb_product_io
+values (
+    seq_tb_product_io_no.nextval,
+    'apple_iphone_13',
+    'O',
+    80, 
+    default 
+);
+
+select * from tb_product;
+select * from tb_product_io;
