@@ -1,0 +1,16 @@
+!DOCTYPE html
+html lang=en
+head
+meta charset=UTF-8
+meta name=viewport content=width=device-width, initial-scale=1.0
+meta http-equiv=X-UA-Compatible content=ie=edge
+titleCSS실습문제-box-shadowtitle
+head
+body
+h2이미지에 마우스 hover 그림자효과 만들기h2
+hr
+    img src=testsunsun1.jpg alt=태양이미지1 
+    img src=testsunsun2.jpg alt=태양이미지2 
+    img src=testsunsun3.jpg alt=태양이미지3 
+body
+html
