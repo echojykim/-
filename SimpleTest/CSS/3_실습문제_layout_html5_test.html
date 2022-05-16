@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML5 레이아웃</title>
+    <!--
+        참고사이트: https://velog.io/@summer_luna_0/HTMLCSS-%EB%A9%94%EB%89%B4-%EA%B5%AC%EB%B6%84%EC%84%A0-after%EB%82%98-before-%EC%82%AC%EC%9A%A9%ED%95%B4%EC%84%9C-%EB%84%A3%EA%B8%B0
+        https://mainia.tistory.com/4210
+        
+    -->
+
+    <style>
+        #container {
+            width: 68vw;
+            height: 100vh;
+            background-color: #eceeee;
+            margin: auto;
+            padding: 10px;
+            display: flex;
+            position: relative;
+        }
+        header, #content, aside, footer {
+		    position: absolute;
+        }
+        header, footer {
+            width: calc(100% - 20px); /*오른쪽 header와 footer박스조절*/
+            height: 100px;
+        }
+        header {
+            background-color: #948989;
+            height: 100px;
+            margin: 20px 0 0 0;
+            overflow: hidden;
+        }
+        header>h2 {
+            padding: 15px 0 0 10px; /*header란 글씨 이동. padding을 안쓰기엔 너무 딱 달라붙어서 10정도. 마지막은 글씨 간격*/
+            margin: 0;
+        }
+        ul.navi {
+            list-style-type: none;
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end; /*끝점으로 이동. flex-direction이 가로배치라 오른쪽.*/
+            margin: 0;
+        }
+        header .navi li::after {
+		content: '|'; /*메뉴 구분선 ::after*/
+		margin: 10px;
+        }
+        header .navi li:last-child::after {
+            content: "";
+        }
+        header .navi a {
+            text-decoration: none;
+            color: black;
+        }
+        header .navi a:hover { /*header 글씨 갖다댔을때 흰색변화*/
+            color: white;
+        }
+        #content {
+            background-color: #eae8e8;
+            width: calc(70% - 10px);
+            top: 110px;
+            height: calc(100vh - 200px);
+        }
+        #content article {
+            padding: 0 10px 0 10px;
+        }
+        aside {
+            width: calc(30% - 10px);
+            height: calc(100vh - 200px);
+            background-color: #dcdad9;
+            top: 110px;
+            right: 10px;
+        }
+        aside h4 {
+            margin: 20px 0 0 10px;
+        }
+        footer {
+            background-color: #555555;
+            bottom: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        footer h3 {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+        }
+        footer p {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <header>
+            <h2>Header</h2>
+            <nav>
+                <ul class="navi">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">HTML5</a></li>
+                    <li><a href="#">CSS3</a></li>
+                    <li><a href="#">JQuery</a></li>
+                    <li><a href="#">Mobile</a></li>
+                    <li><a href="#">Profile</a></li>
+                </ul>
+            </nav>
+        </header>
+        <section id="content">
+            <article>
+                <h3>Article1</h3>
+                <p>동력은 역사를 끝까지 사라지지 생명을 사막이다. 귀는 풀이 맺어, 산야에 안고, 아니다. 아니한 가치를 끓는 어디 같은 간에 희망의 커다란 이것이다. 인생을 가장 어디 아니한 사랑의 석가는 몸이 교향악이다.</p>
+            </article>
+            <article>
+                <h3>Article2</h3>
+                <p>동산에는 살았으며, 반짝이는 불어 곳이 그들은 것이다.보라, 영원히 것이다. 행복스럽고 낙원을 옷을 하였으며, 살았으며, 아름다우냐?</p>
+            </article>
+        </section>
+        <aside>
+            <h4>Aside</h4>
+        </aside>
+
+        <footer>
+            <h3>Footer</h3>
+            <p>&lt;Copyright 2017. <strong>KH정보교육원</strong>. All rights reserved.&gt;</p>
+        </footer>
+    </div>
+</body>
+</html>
