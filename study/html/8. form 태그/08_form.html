@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>폼관련</title>
+    <style> 
+    from {
+        margin : 20px 0;
+    }
+    </style>
+</head>
+<body>  
+    <h1>폼관련</h1>
+    <!--
+        form 사용자 입력 양식 태그. 서버로 사용자 입력값을 전송 가능.
+        - action은 폼을 제출할 서버 url
+        - method는 전송방식 GET(기본값) | POST
+            - GET 사용자입력값을 url에 직렬화해서 전송함. 단순조회시 사용
+            - POST 사용자 입력값을 http메시지 body에 작성(url에 노출되지 않음). 데이터 입력, 수정, 삭제 용도로 사용
+
+        form태그 하위에 name속성이 있는 input 태그값, select 태그값, textarea값 등을 제출함
+
+        global 속성
+            - id: 페이지 내에 태그 식별자. 페이지 내에서 중복이 있어선 안됨
+
+        폼관련 속성
+            - name: 폼 전송시 사용할 속성명. name 속성이 없으면 전송되지 않음.
+            - value: 미리 이름 찍어두기 
+
+    -->
+    <form action="" method="post">
+        <label for="username">이름</label>
+        <input type="text" name="username" id="username" placeholder="이름을 입력하세요" value="신사임당">
+        <br>
+
+        <!--label의 for 속성은 id와 연결됨-->
+        <label for="email">이메일</label>
+        <input type="email" name="email" id="email" placeholder="이메일을 입력하세요.">
+
+        <br><br>
+        <!--<input type="submit" value="">-->
+        <!--input[type=submit]-->
+        <input type="submit" value="등록">
+    </form>
+
+    <hr>
+
+    <form action="" method="get">
+        <fieldset>
+            <legend>text관련</legend>
+            <label for="userId">아이디 : </label>
+            <input type="text" name="userId" id="userId" value="honggd" required>
+            <br>
+            <!--label+input:password-->
+            <label for="password">비밀번호 : </label>
+            <input type="password" name="password" id="password" maxlength="12">
+            <br>
+            <label for="search">검색 : </label>
+            <input type="search" name="search" id="search">
+            <br>
+            <label for="email">이메일 : </label>
+            <input type="email" name="email" id="useremail" placeholder="이메일을 입력하세요.">
+            <br>
+            <label for="url">홈페이지 : </label>
+            <input type="url" name="url" id="url" value="http://">
+            <br>
+            <label for="tel">전화번호 : </label>
+            <input type="tel" name="url" id="tel">
+            <br>
+            <label for="memo">메모 : </label>
+            <textarea name="memo" id="memo" cols="30" rows="10" style="resize : none;">a
+b 
+c 
+d 
+            </textarea>
+        </fieldset>
+        <input type="submit" value="제출">
+    </form>
+
+    <form action="">
+        <fieldset>
+            <legend>숫자</legend>
+            <label for="amount">수량 : </label>
+            <input type="number" name="amount" id="amount"
+            min="0" max="10" step="2" value="4">
+            <br>
+            <label for="score">점수 : </label>
+            <input type="range" name="score" id="score" 
+            oninput="console.log(this.value);" value="100">
+        </fieldset>
+        <button type="submit">제출</button>
+    </form>
+
+    <from>
+        <fieldset>
+            <legend>날짜/시간</legend>
+            <!--label+input:date-->
+            <label for="date">날짜</label>
+            <input type="date" name="date" id="date" 
+            value="1999-09-09"
+            placeholder="날짜를 입력하세요.">
+            <br>
+            <label for="time">시간</label>
+            <input type="time" name="time" id="time" 
+            value="21:38"
+            placeholder="시간을 입력하세요.">      
+            <br>
+            <label for="datetime-local">시각</label>
+            <input type="datetime-local" name="datetime-local" id="datetime-local" 
+            value="2022-05-19T22:27"
+            placeholder="날짜/시각을 입력하세요.">        
+        </fieldset>
+        <button type="submit">제출</button>
+    </from>
+    <form action="">
+        <fieldset>
+            <legend>선택관련</legend>
+            <!--radio 제시된 옵션중 택일해야 하는 경우. 취소는 불가능하다.-->
+            <span>성별 : </span>
+            <input type="radio" name="gender" id="gender0" value="남"><label for="gender0">남</label>
+            <input type="radio" name="gender" id="gender1" value="여"><label for="gender1">여</label>
+            <br>
+            <!--checkbox는 제시된 옵션 중 복수개 선택이 가능한 경우 사용함-->
+            <span>취미 : </span>
+            <!---->
+            <input type="checkbox" name="hobby" id="hobby1" value="축구"><label for=""hobby1">축구</label>
+            <input type="checkbox" name="hobby" id="hobby2" value="농구"><label for=""hobby2">농구</label>
+            <input type="checkbox" name="hobby" id="hobby3" value="야구"><label for=""hobby3">야구</label>
+            <br>
+
+            <label for="nation">국적 : </label>
+            <select name="nation" id="nation">
+                <option value="kor" selected>한국</option>
+                <option value="jpn">일본</option>
+                <option value="usa">미국</option>
+            </select>
+            <!--multiple속성을 추가하면 복수계 선택 가능-->
+
+            <br>
+            <label for="pet">반려동물 : </label>
+            <input type="text" name="pet" id="pet" list="pets">
+            <datalist id="pets">
+                <option value="강아지">
+                <option value="고양이">
+                <option value="가재">
+            </datalist>
+
+        </fieldset>    
+        <button>제출</button>
+        <!--button의 타입속성 기본값은 submit임. 따라서 form안에선 주의해서 사용 요망-->
+    </form>
+
+    <form action="">
+        <fieldset>
+            <legend>기타</legend>
+            <label for="color">컬러 : </label>
+            <input type="color" name="color" id="color" value="#30ab5f">
+            <br>
+            <label for="file">파일 : </label>
+            <input type="file" name="file" id="file">
+            <br>
+            <label for="">안보이지만 전송 : </label>
+            <input type="hidden" name="abc" value="가나다">
+            <br>
+            <input type="button" value="버튼">
+            <input type="submit" value="제출">
+            <input type="reset" value="초기화"><!--초기값으로 돌려줌-->
+            <br>
+            <button type="button">버튼</button>
+            <button type="submit">제출</button> <!--button태그의 type속성 기본값은 submit이다-->
+            <button type="reset">초기화</button>
+        </fieldset>
+        <button>제출</button>
+    </form>
+
+    <br><br><br><br><br><br><br><br><br>
+</body>
+</html>

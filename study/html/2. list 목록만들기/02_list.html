@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!--IE의 문서모드를 edge최신으로 지정-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>list</title>
+
+</head>
+
+<body>
+    <h1>목록관련</h1>
+    <!--unordered list ul>li-->
+    <!--ul>li*3-->
+    <ul style="list-style: disc;">
+        <li>HTML</li>
+        <li>CSS</li>
+        <li>JAVASCRIPT2015</li>
+    </ul>
+    <ol style="list-style: decimal;" start="3">
+        <li></li>
+        <li>HTML</li>
+        <li>CSS</li>
+        <li>
+            JAVASCRIPT2015
+            <ol>
+                <li>React</li>
+                <li>Vue.js</li>
+            </ol>
+        </li>
+    </ol>
+    <!--
+                모든 태그에는 공통된 속성 global attribute를 가지고 있다.
+            -->
+    <!--
+                설명 목록 태그
+                dl (description list)
+                    dt (define title)
+                    dd (define description)
+                    dt
+                    dd
+                    dd
+
+
+            -->
+    <!-- dl>dt+dd-->
+    <dl>
+        <dt>HTML</dt>
+        <dd>Hyper Text Markup Language</dd>
+        <dt>CSS</dt>
+        <dd>Cascade <mark>Style </mark>Sheet</dd>
+        <dt>JS</dt>
+        <dd>Javascript</dd>
+        <dd>Ecmascript</dd>
+    </dl>
+
+</body>
+
+</html>
