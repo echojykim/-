@@ -1,0 +1,164 @@
+스프링 레거시 기본적으로 2개 콘텍트
+
+루트 콘텍트 / 서블릿 콘텍트 
+서블릿 관련은 서블릿 쪽에서 관리
+db나 보안관련은 루트.
+둘이 범위가 다름. 루트 하나에 서블릿이 여러개일수있음. sql이나 이런건 루트에서 관리. 둘다 각자의 bean이 있음.
+
+루트 콘텍트의 빈은 서블릭 콘텍트에서 참조가능. 근데 루트는 아님. 둘의 생성시기의 문제. 루트 콘텍트가 나중에 만들어지기 때문에 서블릿 참조가 안되는것. 
+
+root-context
+servlet-context
+
+pageContext(pageContext)
+request(HttpServletRequest)
+session(HttpSession)
+application (실제 타입 ServletContext) 
+
+어플리케이션은 서블릿콘텍트라고 부르는데 이거랑 servlet-context는 다름. 서블릿콘텍트(servletcontext)는 톰캣이 갖고있는것, servlet-context는 spring에 bean을 설치.
+
+annotation-driven
+: mvc관련의 어노테이션. 클래스에 대한 mvc를 감당하는 것. mvc관련 태그라고 생각하면됨
+
+resources 
+** 아스타 2개는 모든걸 다 포함한다는 의미. 
+정적자원임. 
+
+InternalResourceViewResolver
+view단임. 뒤에 .jsp가 붙여지고 /WEB-INF가 붙여짐
+
+xmlns = xml네임스페이스. 뒤에있는걸 보면됨 
+
+dropdown의 경우 정상적으로 계층구조가 만들어져야 위치가 틀리지 않고 잘 작동됨
+
+impl에는 component기능이 포함된 repository가 붙어야함 
+repository는 component를 상속함. 그래서 당연히 기능포함되어있음.
+
+service단에서
+impl에 일단 service 기능을 위해 @service가 붙어야함
+
+의존주입 = Autowired 패키지를 자동으로 넘어줌
+
+controller단에서
+@controller가 붙고 의존주입을 받으려면 Autowired가 붙어야함 
+
+log4j가 아닌 slf4j의 logger를 사용.
+static final Logger log = LoggerFactory.getLogger(DemoController.class);
+
+@RequestMapping 
+log.info("{} 요청!", "/demo/devForm.do");
+두번째 인자 /domo/devForm.do가 {}요청의 괄호안에 들어가서 출력
+return ~는 view name
+/WEB-INF/views/+demo/devForm + .jsp
+
+@RequestMapping(path = "/demo/devForm.do", method = RequestMethod.GET) 
+에서 path를 value로 alias한다는건 키값을 안정하고 value만 준다는것. path에 대한 별칭임.
+
+method = RequestMethod.GET
+메소드를 허용하지 않으면 모든 메소드를 다 허용(get, post)
+
+public String dev1
+enum을 한 Gender의 경우 Gender.valueOf(~)를 줘야함. 
+String[] lang = request.getParameterValues("lang");
+
+jsp로 가기전에 속성을 저장해야함. 그래서 request.setAttribute 필요. 
+
+localDateTime을 쓸 경우 jsp에서 fmt:parseDate를 먼저 해줘야함.
+
+ * <pre> pre태그를 하면 javadoc에서 줄바꿈과 같이 주석됨
+ * @Controller 클래스의 handler메소드가 가질수 있는 매개변수 타입
+ 
+ * HttpServletRequest
+ * HttpServletResponse
+ * HttpSession
+ 
+ * java.util.Locale : 요청에 대한 Locale
+ * InputStream/Reader : 요청에 대한 입력스트림(읽을수있는것)
+ * OutputStream/Writer : 응답에 대한 출력스트림. (쓸수있는것) ServletOutputStream, PrintWriter
+ 
+ * 사용자입력값처리
+ * Command객체 : http요청 파라미터를 커맨드객체에 저장한 VO객체
+ * CommandMap :  HandlerMethodArgumentResolver에 의해 처리된 사용자입력값을 가진 Map객체
+ * @Valid : 커맨드객체 유효성 검사객체
+ * Error, BindingResult : Command객체에 저장결과(Command객체 바로 다음위치시킬것.)
+ * @PathVariable : 요청url중 일부를 매개변수로 취할 수 있다.
+ * @RequestParam : 사용자입력값을 자바변수에 대입처리(필수여부 설정)
+ * @RequestHeader : 헤더값
+ * @CookieValue : 쿠키값
+ * @RequestBody : http message body에 작성된 json을 vo객체로 변환처리
+ 
+ * 뷰에 전달할 모델 데이터 설정
+ * ModelAndView
+ * ModelMap 
+ * Model
+mvc의 모델이 아님. servlet->controller -> view의 jsp
+servlet>controller(핸들러 발생)>view
+모델은 컨트롤러에서 값을 담아서 view로 전달함 
+view에 데이터 전달할때 사용한다.
+
+ * @ModelAttribute : model속성에 대한 getter
+ * @SessionAttribute : session속성에 대한 getter(required여부 선택가능)
+ *   (@SessionAttributes : session에서 관리될 속성명을 class-level에 작성) 
+ * SessionStatus: @SessionAttributes로 등록된 속성에 대하여 사용완료(complete)처리. 세션을 폐기하지 않고 재사용한다.
+ 
+ * 기타
+ * MultipartFile : 업로드파일 처리 인터페이스. CommonsMultipartFile
+ * RedirectAttributes : DML처리후 요청주소 변경을 위한 redirect시 속성처리 지원
+
+ * </pre>
+
+이런게 pring String dev1(!여기 안에 옴!)
+
+@RequestParam 모델을 통해 속성저장. 값과 매칭시켜서 전달. 이게 request scope 속성으로 저장. 
+필수값처리를 하지 않을거면 @RequestParam(name="name", required = false) String nm, 
+	 * @RequestParam 
+	 * - 모든 필드는 필수값이다. (기본값)
+	 * - required = false (옵션으로 처리)
+	 * - 자바변수명, name속성값과 일치하는 사용자 입력값을 찾는다.
+	 * - 기본값처리도 가능하다.
+
+root-context에다가 이걸 적어야함. 
+datasource 빈 등록 > mybatis sqlsessionfactorybean, template 빈 등록 > sqlsession인터페이스 구현체(di되어 실행됨)
+	<!-- #6.1. datasource 빈 등록 -->
+	<context:property-placeholder location="classpath:datasource.properties"/>
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="driverClassName" value="${datasource.driverClassName}"/>
+		<property name="url" value="${datasource.url}"/>
+		<property name="username" value="${datasource.username}"/>
+		<property name="password" value="${datasource.password}"/> 
+	</bean>
+	<!-- #6.2 mybatis SqlSessionFactoryBean, SqlSessionTemplate 빈등록 -->
+	<bean id="sqlSessionFactoryBean" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"/>
+		<property name="mapperLocations" value="classpath:mapper/**/*-mapper.xml"/>
+		<property name="configLocation" value="classpath:mybatis-config.xml"/>
+	</bean>
+	<!-- SqlSession인터페이스 구현체. Dao구현체 클래스에 DI되어 실행됨 -->
+	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg ref="sqlSessionFactoryBean" index="0"/>
+	</bean>
+
+insertDev. 같이 db등록의 경우
+redirect를 해야하기 때문에 RedirectAttributes redirectAttr 
+4:17:28 뭔소린가 목소리 겹침 
+원래 session에 저장. 그리고 한번 쓰고 지움. redirectattributes하면 지가 알아서 세션에 저장하고 다음에 꺼내서 보여줌. 
+
+stringArrayTypeHandler.java
+@MappedTypes(String[].class) //javaType
+@MappedJdbcTypes(JdbcType.VARCHAR) //jdbcType
+
+이렇게 있으면 pstst.setString 부분이 setNonNullParameter
+String[] -> VARCHAR
+파라미터가 NULL일경우 호출X(String[] parameter가 null) 
+
+resultset (varchar -> string[]) 
+- getNullableResult
+
+resultset 부분은 getter임. db조회결과를 읽어서 처리. 
+
+config.xml
+<typeHandler handler="com.kh.spring.typehandler.StringArrayHandler">
+이렇게 적어도 되고 아래처럼 적어도됨. (아래는 아예 특정 패키지 등록) 
+  <typeHandlers>
+	<package name="com.kh.spring.common.typehandler"/>
+  </typeHandlers>
