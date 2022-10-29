@@ -9,7 +9,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Data
-@Entity
+@Table(name = "basicBoard")
 public class BasicBoard {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) //ID랑 해서 primary로 등록하게 하는 어노테이션

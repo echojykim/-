@@ -1,8 +1,9 @@
 package com.example.demo.repository;
 
 import com.example.demo.entity.BasicBoard;
-import org.springframework.data.repository.Repository;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
-public interface BasicBoardRepository extends Repository<BasicBoard, Long> {
+public interface BasicBoardRepository extends JpaRepository<BasicBoard, Long> {
 
 }
