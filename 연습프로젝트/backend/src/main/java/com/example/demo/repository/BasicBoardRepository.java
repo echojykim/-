@@ -1,4 +1,8 @@
 package com.example.demo.repository;
 
-public interface BasicBoardRepository {
+import com.example.demo.entity.BasicBoard;
+import org.springframework.data.repository.Repository;
+
+public interface BasicBoardRepository extends Repository<BasicBoard, Long> {
+
 }

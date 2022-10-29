@@ -12,14 +12,14 @@
 <script>
 
 import BoardList from '@/components/board/BoardList.vue'
-import { mapState, mapActions } from 'vuex'
+import { mapState, mapActions } from 'vuex' //데이터가 불러와질때 필요함 
 
 export default {
     name: 'BoardListPage',
     components: {
         BoardList
     },
-    computed: {
+    computed: { //시점이 언제인지에 따라서 작동이 달라짐. 
         ...mapState(['boards'])
     },
     mounted() {
