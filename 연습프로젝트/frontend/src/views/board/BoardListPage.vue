@@ -1,11 +1,11 @@
 <template>
-    <div id="board">
+    <div id="basicBoard">
         <h2>Vue + Spring 게시판</h2>
         <router-link :to="{ name: 'BoardRegisterPage' }"> <!--//게시물 작성 페이지로 이동하겠다.--> 
             게시물 작성
         </router-link>
         <!-- v-bind: board="boards"와 같으며 아래와 같이 생략 가능 -->
-        <board-list :boards="boards"/>
+        <board-list :basicBoards="basicBoards"/>
     </div>
 </template>
 
@@ -20,13 +20,13 @@ export default {
         BoardList
     },
     computed: { //시점이 언제인지에 따라서 작동이 달라짐. 
-        ...mapState(['boards'])
+        ...mapState(['basicBoards'])
     },
     mounted() {
-        this.fetchBoardList()
+        this.fetchBasicBoardList()
     },
     methods: {
-        ...mapActions(['fetchBoardList'])
+        ...mapActions(['fetchBasicBoardList'])
     }
 }
 </script>
