@@ -1,4 +1,4 @@
-package com.example.demo.service.BasicBoard;
+package com.example.demo.service.basicBoard;
 
 import com.example.demo.entity.BasicBoard;
 

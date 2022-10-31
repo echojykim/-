@@ -1,14 +1,14 @@
 import {
-    FETCH_BOARD_LIST,
-    //FETCH_BOARD
+    FETCH_BASIC_BOARD_LIST,
+    FETCH_BASIC_BOARD
 } from './mutation-types'
 
 export default {
-    [FETCH_BOARD_LIST] (state, boards) {
-        state.boards = boards 
+    [FETCH_BASIC_BOARD_LIST] (state, basicBoards) {
+        state.basicBoards = basicBoards 
     }, 
-    // [FETCH_BOARD] (state, board) {
-    //     state.board = board 
-    // }
+    [FETCH_BASIC_BOARD] (state, basicBoard) {
+         state.basicBoard = basicBoard 
+     }
 }
 
