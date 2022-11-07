@@ -9,6 +9,7 @@ import getters from './getters'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
+  /* state에는 복수형 사용 x */
   state,
   actions,
   mutations,

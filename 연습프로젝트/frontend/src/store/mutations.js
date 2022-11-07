@@ -1,14 +1,14 @@
 import {
-    FETCH_BASIC_BOARD_LIST,
-    FETCH_BASIC_BOARD
+    FETCH_JPA_BOARD_LIST,
+    FETCH_JPA_BOARD
 } from './mutation-types'
 
 export default {
-    [FETCH_BASIC_BOARD_LIST] (state, basicBoards) {
-        state.basicBoards = basicBoards 
+    [FETCH_JPA_BOARD_LIST] (state, boards) {
+        state.jpaBoards = boards 
     }, 
-    [FETCH_BASIC_BOARD] (state, basicBoard) {
-         state.basicBoard = basicBoard 
+    [FETCH_JPA_BOARD] (state, board) {
+         state.jpaBoard = board 
      }
 }
 

@@ -1,7 +1,7 @@
-package com.example.demo.controller.basicBoard;
+package com.example.demo.controller.jpa;
 
-import com.example.demo.entity.BasicBoard;
-import com.example.demo.service.basicBoard.BasicBoardService;
+import com.example.demo.entity.jpa.JpaBoard;
+import com.example.demo.service.jpa.JpaBoardService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
@@ -11,15 +11,15 @@ import java.util.List;
 
 @Slf4j
 @RestController
-@RequestMapping("/basicBoard/board")
+@RequestMapping("/62th/board")
 @CrossOrigin(origins = "http://localhost:8080", allowedHeaders = "*")
 //웹 페이지의 제한된 자원을 외부 도메인에서 접근을 허용해주는 메커니즘
 // 서로다른 도메인에서 리소스를 공유하는 방식
 
-public class BasicController {
+public class JpaBoardController {
 
     @Autowired
-    private BasicBoardService service;
+    private JpaBoardService service;
 
 //    @GetMapping("/list") //사용자가 list url을 요청하는 경우
 //    public ResponseEntity<List<BasicBoard>> getVueBoardList() {
@@ -32,15 +32,15 @@ public class BasicController {
 //    }
 
     @PostMapping("/register")
-    public void BasicBoardRegister (@Validated @RequestBody BasicBoard board) {
-        log.info("basicBoardRegister()");
+    public void jpaBoardRegister(@Validated @RequestBody JpaBoard board) {
+        log.info("jpaBoardRegister()");
 
         service.register(board);
     }
 
     @GetMapping("/list")
-    public List<BasicBoard> basicBoardlist() {
-        log.info("basicBoardList()");
+    public List<JpaBoard> jpaBoardList() {
+        log.info("jpaBoardList()");
 
         return service.list();
     }

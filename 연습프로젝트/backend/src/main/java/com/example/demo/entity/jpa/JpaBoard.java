@@ -1,4 +1,4 @@
-package com.example.demo.entity;
+package com.example.demo.entity.jpa;
 
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
@@ -9,7 +9,7 @@ import java.util.Date;
 
 @Data
 @Entity
-public class BasicBoard {
+public class JpaBoard {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long boardNo;

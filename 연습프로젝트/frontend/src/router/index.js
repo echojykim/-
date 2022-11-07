@@ -2,8 +2,8 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import TestPage from '@/views/TestPage.vue'
-import BoardListPage from '@/views/board/BoardListPage.vue'
-import BoardRegisterPage from '@/views/board/BoardRegisterPage.vue'
+import JpaBoardListPage from '@/views/jpaBoard/JpaBoardListPage.vue'
+import JpaBoardRegisterPage from '@/views/jpaBoard/JpaBoardRegisterPage.vue'
 
 Vue.use(VueRouter)
 
@@ -19,14 +19,14 @@ const routes = [
     component: TestPage
   },
   {
-    path: '/boardListPage', 
-    name: 'BoardListPage',
-    component: BoardListPage
+    path: '/jpaBoardListPage', 
+    name: 'JpaBoardListPage',
+    component: JpaBoardListPage
   },
   {
-    path: '/boardRegisterPage', 
-    name: 'BoardRegisterPage',
-    component: BoardRegisterPage
+    path: '/jpaBoardRegisterPage', 
+    name: 'JpaBoardRegisterPage',
+    component: JpaBoardRegisterPage
   },
   {
     path: '/about',

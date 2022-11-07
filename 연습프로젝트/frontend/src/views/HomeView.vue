@@ -3,7 +3,7 @@
     <router-link style="text-decoration: none;" :to="{ name: 'TestPage' }">
         &nbsp;TestPage&nbsp;
     </router-link>
-    <router-link style="text-decoration: none;" :to="{ name: 'BoardListPage' }">
+    <router-link style="text-decoration: none;" :to="{ name: 'JpaBoardListPage' }">
       &nbsp;BoardList&nbsp;
     </router-link>
   </div>
